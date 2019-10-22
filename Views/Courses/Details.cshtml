@@ -1,0 +1,133 @@
+﻿@model ContosoUniversity.Models.course_stud_teacher
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Course</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @*Html.DisplayNameFor(model => model.Title)*@
+            <th>Title</th>
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.single_course.Title)
+        </dd>
+        <dt class="col-sm-2">
+            @*Html.DisplayNameFor(model => model.Credits)*@
+            <th>Credits</th>
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.single_course.Credits)
+        </dd>
+        <dt class="col-sm-2">
+            @*Html.DisplayNameFor(model => model.Department)*@
+            <th>Department</th>
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.single_course.Department.DepartmentID)
+        </dd>
+
+        <dt class="col-sm-2">
+            @*Html.DisplayNameFor(model => model.CourseAssignmets.Select(i=>i.Instructor.FullName))*@
+            <th>Teacher</th>
+        </dt>
+        @*
+            <dd class="col-sm-10">
+
+                @foreach (var item in Model.CourseAssignmets.Select(i => i.Instructor))
+                {
+                    string str = " ";
+            @*  @Html.DisplayFor(model => model.CourseAssignmets.Select(i=>i.Instructor.FullName).First())
+            item.FullName ;
+
+            }
+            </dd>
+        *@
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Click here to see teachers and students of this course", "Details", new { courseID = @Model.single_course.CourseID })
+
+
+</div>
+
+@if (Model.instructors != null)
+{
+    <h3>Teachers that teaches this course</h3>
+    <table class="table">
+        <tr>
+
+            <th>Full Name</th>
+            <th>Hire Date</th>
+            <th>Office</th>
+        </tr>
+
+        @foreach (var item in Model.instructors)
+        {
+
+            <tr>
+
+                <td>
+                    @item.FullName
+                </td>
+                <td>
+                    @item.HireDate
+                </td>
+                <td>
+                    @if (item.OfficeAssignment != null)
+                    {
+                        @item.OfficeAssignment.Location
+                    }
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+
+
+
+@if (Model.students != null)
+{
+    <h3>Students of this course</h3>
+    <table class="table">
+        <tr>
+
+            <th>Full Name</th>
+            <th>Enrollment Date</th>
+            <th>Accadamic Year</th>
+        </tr>
+
+        @foreach (var item in Model.students)
+        {
+
+            <tr>
+
+                <td>
+                    @item.FullName
+                </td>
+                <td>
+                    @item.EnrollmentDate
+                </td>
+                <td>
+                   
+                        @item.Acc_Year
+                    
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+
+
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.single_course.CourseID">Edit</a> |&nbsp;
+    <a asp-action="Index">Back to List</a>
+</div>

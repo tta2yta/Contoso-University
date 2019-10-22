@@ -1,0 +1,114 @@
+﻿@model ContosoUniversity.Models.Student
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Student</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ID" />
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FirstMidName" class="control-label"></label>
+                <input asp-for="FirstMidName" class="form-control" />
+                <span asp-validation-for="FirstMidName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EnrollmentDate" class="control-label"></label>
+                <input asp-for="EnrollmentDate" class="form-control" />
+                <span asp-validation-for="EnrollmentDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Acc_Year" class="control-label"></label>
+                <select asp-for="Acc_Year" class="form-control">
+                    @{
+                        if (ViewBag.acc_year == "17 / 18")
+                        {
+                            @: <option value="17/18" selected>17/18</option>
+                        }
+                        else
+                        {
+                            @: <option value="17/18">17/18</option>
+                        }
+                        /**/
+                        if (ViewBag.acc_year == "18/19")
+                        {
+                            @: <option value="18/19" selected>18/19</option>
+                        }
+                        else
+                        {
+                            @: <option value="18/19">18/19</option>
+                        }
+
+                        if (ViewBag.acc_year == "19 / 20")
+                        {
+                            @: <option value="19/20" selected>19/20</option>
+                        }
+                        else
+                        {
+                            @: <option value="19/20">19/20</option>
+                        }
+                    }
+                </select>
+                <span asp-validation-for="Acc_Year" class="text-danger"></span>
+                @* @Html.DropDownListFor( ViewBag.acc_year, ViewBag.acc_year_list)*@
+                @* @Html.DropDownListFor(ViewBag.acc_year, ViewBag.NewsCategoriesID as List<SelectListItem>, new { name = "NewsCategoriesID", id = "NewsCategoriesID" })*@
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Semi_Id" class="control-label"></label>
+                        <input asp-for="Semi_Id" class="form-control" />
+                        <span asp-validation-for="Semi_Id" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <table>
+                                <tr>
+                                    @{
+                                        int cnt = 0;
+                                        List<ContosoUniversity.Models.SchoolViewModels.AssignedCourseData> courses = ViewBag.Courses;
+
+                                        foreach (var course in courses)
+                                        {
+                                            if (cnt++ % 3 == 0)
+                                            {
+                                            @:</tr><tr>
+                                            }
+                                            @:<td>
+                                                <input type="checkbox"
+                                                       name="selectedCourses"
+                                                       value="@course.CourseID"
+                                                       @(Html.Raw(course.Assigned ? "checked=\"checked\"" : "")) />
+                                                @course.CourseID @:  @course.Title
+                                            @:</td>
+                                        }
+                                    @:</tr>
+                                    }
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="submit" value="Save" class="btn btn-primary" />
+                        </div>
+                    </form>
+            </div>
+        </div>
+
+        <div>
+            <a asp-action="Index">Back to List</a>
+        </div>
+
+        @section Scripts {
+            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        }
