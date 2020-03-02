@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ContosoUniversity.Models;
+using University_MS.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace ContosoUniversity.Data
+namespace University_MS.Data
 {
-    public class contoso_repository : Icontoso_repository
+    public class University_MS : Icontoso_repository
     {
 
         private readonly SchoolContext _context;
