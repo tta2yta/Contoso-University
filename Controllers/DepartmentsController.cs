@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using ContosoUniversity.Data;
-using ContosoUniversity.Models;
+using University_MS.Data;
+using University_MS.Models;
 
-namespace ContosoUniversity.Controllers
+namespace University_MS.Controllers
 {
     public class DepartmentsController : Controller
     {
