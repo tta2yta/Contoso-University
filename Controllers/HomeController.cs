@@ -5,11 +5,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using ContosoUniversity.Data;
-using ContosoUniversity.Models.SchoolViewModels;
-using ContosoUniversity.Models;
+using University_MS.Data;
+using University_MS.Models.SchoolViewModels;
+using University_MS.Models;
 
-namespace ContosoUniversity.Controllers
+namespace University_MS.Controllers
 {
     public class HomeController : Controller
     {
