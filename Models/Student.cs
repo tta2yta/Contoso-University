@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ContosoUniversity.Models
+namespace University_MS.Models
 {
     public class Student
     {
